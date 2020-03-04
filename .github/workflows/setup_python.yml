@@ -1,17 +1,21 @@
 ---
-name: 'Setup Python'
-description: 'Set up a specific version of Python and add the command-line tools to the PATH.'
-author: 'GitHub'
-inputs:
-  python-version:
-    description: "Version range or exact version of a Python version to use, using SemVer's version range syntax."
-    default: '3.x'
-  architecture:
-    description: 'The target architecture (x86, x64) of the Python interpreter.'
-    default: 'x64'
-runs:
-  using: 'node12'
-  main: 'dist/index.js'
-branding:
-  icon: 'code'
-  color: 'yellow'
+
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.7' # Semantic version range syntax or exact version of a Python version
+        architecture: 'x64' # Optional - x64 or x86, defaults to x64
+    # You can test your matrix by printing the current Python version
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
