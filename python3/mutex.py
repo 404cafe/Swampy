@@ -2,7 +2,7 @@
 mutex = Semaphore(1)
 counter = 0
 
-## Thread code
+## Thread code 1
 
 mutex.wait()
 # critical section
